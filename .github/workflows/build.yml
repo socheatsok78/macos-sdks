@@ -2,10 +2,14 @@ name: build
 
 on:
   workflow_dispatch:
+    inputs:
+      runs-on:
+        default: macos-latest
+        description: 'The OS to run the build on'
 
 jobs:
   build:
-    runs-on: macos-26
+    runs-on: ${{ inputs.runs-on }}
     steps:
       - uses: actions/checkout@v4
 
