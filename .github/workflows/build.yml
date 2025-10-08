@@ -1,18 +1,24 @@
 name: build
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
-    inputs:
-      runs-on:
-        default: macos-latest
-        description: 'The OS to run the build on'
 
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build:
-    runs-on: ${{ inputs.runs-on }}
+    strategy:
+      matrix:
+        os:
+          - macos-26
+          - macos-15
+          - macos-14
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
 
