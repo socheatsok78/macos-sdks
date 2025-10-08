@@ -1,0 +1,25 @@
+name: build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: tpoechtrager/osxcross
+          path: osxcross
+
+      - name: Packaging the SDK
+        working-directory: ./osxcross
+        run: |
+          ./tools/gen_sdk_package_tools.sh
+          mv *.tar.* tarballs/
+          mv *.pkg tarballs/ || true
+
+      - name: Upload SDK tarballs to GitHub Release
+        run: gh release upload sdk tarballs/* -R ${{github.repository}} --clobber
