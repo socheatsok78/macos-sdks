@@ -29,4 +29,4 @@ jobs:
           mv *.pkg tarballs/ || true
 
       - name: Upload SDK tarballs to Rolling Release
-        run: gh release upload rolling osxcross/tarballs/* -R ${{github.repository}} --clobber
+        run: gh release upload rolling osxcross/tarballs/* -R ${{github.repository}}
