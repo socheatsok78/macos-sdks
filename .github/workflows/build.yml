@@ -7,6 +7,9 @@ on:
         default: macos-latest
         description: 'The OS to run the build on'
 
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   build:
     runs-on: ${{ inputs.runs-on }}
