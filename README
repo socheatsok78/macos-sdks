@@ -1,2 +1,6 @@
-Please ensure you first read and understood the Xcode and Apple SDKs Agreement, https://www.apple.com/legal/sla/docs/xcode.pdf.
+Please ensure you first read and understood the Xcode and Apple SDKs Agreement
+https://www.apple.com/legal/sla/docs/xcode.pdf
 
+--------------------------------
+
+This repository contains scripts to generate macOS SDK packages from GitHub Actions macOS runners.
