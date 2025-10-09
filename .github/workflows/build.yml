@@ -28,11 +28,7 @@ jobs:
           path: osxcross
 
       - name: Packaging the SDK
-        working-directory: ./osxcross
-        run: |
-          ./tools/gen_sdk_package.sh
-          mv *.tar.* tarballs/
-          mv *.pkg tarballs/ || true
+        run: ./gen_sdk_packages.sh
 
       - name: Upload SDK tarballs to Rolling Release
         run: gh release upload rolling osxcross/tarballs/* -R ${{github.repository}} --clobber
