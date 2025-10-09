@@ -30,7 +30,7 @@ jobs:
       - name: Packaging the SDK
         working-directory: ./osxcross
         run: |
-          ./tools/gen_sdk_package_tools.sh
+          ./tools/gen_sdk_package.sh
           mv *.tar.* tarballs/
           mv *.pkg tarballs/ || true
 
