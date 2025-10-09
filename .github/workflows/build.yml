@@ -1,24 +1,24 @@
 name: build
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
+    inputs:
+      runs-on:
+        description: 'Select the macOS version to run the job on'
+        required: false
+        default: 'macos-26'
+        type: choice
+        options:
+          - macos-26
+          - macos-15
+          - macos-14
 
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build:
-    strategy:
-      matrix:
-        os:
-          - macos-26
-          - macos-15
-          - macos-14
-      fail-fast: false
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ inputs.runs-on }}
     steps:
       - uses: actions/checkout@v4
 
