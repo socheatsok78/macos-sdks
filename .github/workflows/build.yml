@@ -22,7 +22,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/checkout@v4
+      - name: Fetch tpoechtrager/osxcross repository
+        uses: actions/checkout@v4
         with:
           repository: tpoechtrager/osxcross
           path: osxcross
