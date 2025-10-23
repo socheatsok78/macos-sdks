@@ -34,8 +34,11 @@ jobs:
           repository: tpoechtrager/osxcross
           path: osxcross
 
-      - name: Packaging the SDK
+      - name: Packaging the SDKs
         run: ./gen_sdk_packages.sh
+
+      - name: List generated tarballs
+        run: ls -l osxcross/tarballs/
 
       - if: ${{ inputs.dry-run == false }}
         name: Upload SDK tarballs to Rolling Release
