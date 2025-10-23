@@ -27,4 +27,7 @@ for XCODEDIR in "${XCODEDIRS[@]}"; do
 done
 
 # Move all generated tarballs and pkgs to a separate directory
-mv ./*.tar.* "${OSXCROSS_WORKSPACE}/tarballs/"
+mv ./MacOSX*.*.sdk.tar.xz "${OSXCROSS_WORKSPACE}/tarballs/"
+
+# Cleanup any remaining pkg files
+rm ./MacOSX*.sdk.tar.xz || true
