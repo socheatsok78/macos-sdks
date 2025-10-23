@@ -26,8 +26,13 @@ find /Applications -maxdepth 1 -type d -name "Xcode*.app" | sort | while IFS= re
 	XCODEDIR="${XCODEDIR}" "${OSXCROSS_WORKSPACE}/tools/gen_sdk_package.sh"
 done
 
-# Move all generated tarballs and pkgs to a separate directory
-mv ./MacOSX*.*.sdk.tar.xz "${OSXCROSS_WORKSPACE}/tarballs/"
-
-# Cleanup any remaining pkg files
-rm ./MacOSX*.sdk.tar.xz || true
+# Loop through generated tarballs and move them to tarballs directory
+# NOTE: Only the MAJOR.MINOR SDK versions are included, e.g., MacOSX26.0.sdk.tar.xz
+#       anything else will be ignored.
+for file in ./MacOSX*.*.sdk.tar.xz; do
+	if [[ -f "$file" ]]; then
+		_file=$(basename "$file")
+		mv "$file" "${OSXCROSS_WORKSPACE}/tarballs/"
+		(cd "${OSXCROSS_WORKSPACE}/tarballs" && sha256sum "${_file}" > "${_file}.sha256sum")
+	fi
+done
