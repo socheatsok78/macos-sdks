@@ -14,7 +14,7 @@ on:
           - macos-15
           - macos-14
       dry-run:
-        description: 'If true, the job will not upload the generated SDK tarballs (default: true)'
+        description: 'Do not upload the generated SDK tarballs to the release'
         required: false
         default: true
         type: boolean
