@@ -1,4 +1,5 @@
 name: build
+run-name: build (${{ inputs.runs-on }})
 
 on:
   workflow_dispatch:
