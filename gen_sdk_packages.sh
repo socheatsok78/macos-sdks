@@ -14,6 +14,11 @@ fi
 # Flag to skip beta SDKs (default: 1)
 SKIP_BETA_SDKS=${SKIP_BETA_SDKS:-1}
 
+if [[ "${SKIP_BETA_SDKS}" == "1" ]]; then
+	echo "[INFO] SKIP_BETA_SDKS is set."
+	echo "[INFO] The script is set to skip beta SDKs."
+fi
+
 # Generate SDK packages for each Xcode installation
 find /Applications -maxdepth 1 -type d -name "Xcode*.app" | sort | while IFS= read -r XCODEDIR; do
 	if [[ "${SKIP_BETA_SDKS}" -eq 1 ]] && [[ "${XCODEDIR}" == *"beta"* ]]; then

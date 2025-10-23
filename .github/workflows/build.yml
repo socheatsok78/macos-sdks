@@ -37,6 +37,6 @@ jobs:
       - name: Packaging the SDK
         run: ./gen_sdk_packages.sh
 
-      - if: ${{ !inputs.dry-run }}
+      - if: ${{ inputs.dry-run == false }}
         name: Upload SDK tarballs to Rolling Release
         run: gh release upload rolling osxcross/tarballs/* -R ${{github.repository}} --clobber
